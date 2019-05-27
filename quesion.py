@@ -32,12 +32,12 @@ class Question(object):
         xml = etree.parse(filename)
         root = xml.getroot()
         xml_question = root.xpath(Config.XPATH_QUESTION)[0]
-        content = xml_question.xpath(Config.XPATH_CONTENT)[0]
+        content = re.sub(r'\s+', '__', xml_question.xpath(Config.XPATH_CONTENT)[0].strip())
         xml_options = xml_question.xpath(Config.XPATH_OPTIONS)
         # options = [str(x.xpath(Config.XPATH_OPTOIN_DESC)[0]).strip() for x in xml_options]
         options = []
         for o in xml_options:
-            desc = o.xpath(Config.XPATH_OPTOIN_DESC)[0]
+            desc = re.sub(r'\s+', '_', o.xpath(Config.XPATH_OPTOIN_DESC)[0].strip())
             bound_str = o.xpath(Config.XPATH_OPTION_BOUNDES)[0]
             bound = [int(x) for x in re.findall(r'\d+', bound_str)]
             pos = ((bound[0]+bound[1])//2, (bound[1]+bound[3])//2)
