@@ -2,6 +2,7 @@
 ## XueXi 挑战答题辅助
 
 采用adb模块获取手机UI布局的xml文件，通过lxml解析出题目内容和选项，利用搜索引擎统计词频，完成答案提交。
+先进入挑战答题页面，然后启动脚本，根据console输入和自己的判断在手机提交答案，然后在console输入正确答案并回车提交数据库保存。若手机提交答案错误，请在console提交正确的答案后再输入‘N’退出脚本。复活后可以重新启动脚本继续刷题。
 
 ### 使用步骤
 1.安装[ADB](https://adb.clockworkmod.com/),并配置环境变量
@@ -26,7 +27,7 @@ $(venv):pip install requests
 
 5.运行脚本
 ```python
-$(venv):python run.py
+$(venv):python main.py
 ```
 
 > 展望：将题目和答案存入数据库中，提高题库覆盖率从而提高正确率

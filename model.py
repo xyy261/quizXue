@@ -27,13 +27,16 @@ engine = create_engine(Config.DATABASE_URI)
 # 创建DBSession类型:
 Session = sessionmaker(bind=engine)
 
+
 if __name__ == "__main__":
     # 创建数据表
     Base.metadata.create_all(engine)
     session = Session()
 
     one = session.query(Bank).all()
-    print(len(one))
+    print(f'题库规模： {len(one)} 题')
     for o in one:
         print(o)
+
+    
     

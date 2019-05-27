@@ -12,6 +12,7 @@
 import os
 import subprocess
 from config import Config
+from time import sleep
 
 def pull_xml(filename):
     if os.path.exists(filename):

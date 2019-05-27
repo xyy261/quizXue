@@ -9,4 +9,5 @@ class Config:
     XPATH_CONTENT = './node[@index="0"]/@content-desc'
     XPATH_OPTIONS = './node[@index="1"]//node/node[@index="1"]'
     XPATH_OPTOIN_DESC = './@content-desc'
+    XPATH_OPTION_BOUNDES = './@bounds'
     HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36"}
