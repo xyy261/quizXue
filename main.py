@@ -42,30 +42,32 @@ def search(question):
     for option in options:
         option.counter = response.count(option.desc)
         print(f' ·{option.desc}:\t{option.counter}')
-
     return question
 
 
 def run(session, question, ch=''):
     pull_xml(filename)
-    current_quesion = Question.from_xml(filename)
+    current = Question.from_xml(filename)
     if question:
-        if 'N' == ch:
+        if current == question:
             return question
-        else:
+        elif ch and ch in 'ABCD':
+            print('Execute session.add')
             db_add(session, question, ch)
-    question = current_quesion
+        else:
+            pass            
+    question = current
     print('%s\n%s'%(question.content, '-'*min(len(question.content)*2, 80)))
     bank = db_qeury(session, question.content)
     if bank:
-        print(f"Answer: {bank.answer}")
+        print(f"\n手机提交答案后可直接回车 Answer:  __{bank.answer}__\n")
         return question
     return search(question) 
 
 ch = ''
 while True:    
     question = run(session, question, ch)
-    print('请先在手机提交答案，根据提交结果输入答案！')
+    print('%s\n请先在手机提交答案，根据提交结果输入答案！（“N”退出）'%('-'*min(len(question.content)*2, 80)))
     ch = input('请输入：').upper()
 
     if 'N' == ch:
