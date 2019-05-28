@@ -41,10 +41,11 @@ def run(session, question, ch=''):
     pull_xml(filename)
     current = Bank.from_xml(filename)
     if question:
-        if current == question:
-            print('输入“n”或“N”退出！')
-            return question
-        elif ch and ch in 'ABCD':
+        # if current == question:
+        #     print('输入“n”或“N”退出！')
+        #     return question
+        # elif ch and ch in 'ABCD':
+        if ch and ch in 'ABCD':
             question.answer = ch
             db_add(session, question)
            
@@ -52,7 +53,13 @@ def run(session, question, ch=''):
     print('\n%s\n%s'%(question.content, '-'*min(len(question.content)*2, 80)))
     bank = db_qeury(session, content=question.content)
     if bank:
-        print(f"\n手机提交答案后可直接回车 Answer:  -{bank.answer}-\n")
+        # items = [x for x in (bank.item1, bank.item2, bank.item3, bank.item4) if x]
+        # index = ord(bank.answer)-65
+        # if index < len(items):
+        #     items[index] = f'{items[index]} <--- [{bank.answer}]'
+        # options = '\n'.join(items)
+        # print(f'\n{options}')
+        print(f"\n手机提交答案后可直接回车 正确答案:  {bank.answer}\n")
         return question
     return search(question) 
 

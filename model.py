@@ -59,7 +59,11 @@ class Bank(Base):
         return f'{self.content}\n'
     
     def __str__(self):
-        options = '\n'.join([f'+ {x}' for x in (self.item1, self.item2, self.item3, self.item4) if x])
+        items = [x for x in (self.item1, self.item2, self.item3, self.item4) if x]
+        index = ord(self.answer)-65
+        if index < len(items):
+            items[index] = f'**{items[index]}**'
+        options = '\n'.join([f'+ {x}' for x in items])
         return f'{self.id}. {self.content} **{self.answer.upper()}**\n{options}\n'
 
 # 初始化数据库连接:
