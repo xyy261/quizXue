@@ -24,7 +24,11 @@ def tap_screen(x, y):
     # print('tap (%d, %d)'%(x, y))
     os.system('adb shell input tap %d %d'%(x, y))
 
+def connect_mumu():
+    os.system('adb connect 127.0.0.1:7555')
+
 if __name__ == "__main__":
     # os.system('adb shell getevent -p')
     # print(os.system('adb shell getevent -p'))
     filename = Config.XML_URI
+    pull_xml(filename)
