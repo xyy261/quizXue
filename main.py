@@ -73,15 +73,3 @@ while True:
     if 'N' == ch:
         break
 
-
-
-
-
-
-
-    
-
-    
-    
-
-        

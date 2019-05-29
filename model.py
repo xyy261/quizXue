@@ -59,12 +59,13 @@ class Bank(Base):
         return f'{self.content}\n'
     
     def __str__(self):
+        content = re.sub(r'[\(（]出题单位.*', "", self.content)
         items = [x for x in (self.item1, self.item2, self.item3, self.item4) if x]
         index = ord(self.answer)-65
         if index < len(items):
             items[index] = f'**{items[index]}**'
         options = '\n'.join([f'+ {x}' for x in items])
-        return f'{self.id}. {self.content} **{self.answer.upper()}**\n{options}\n'
+        return f'{self.id}. {content} **{self.answer.upper()}**\n{options}\n'
 
 # 初始化数据库连接:
 engine = create_engine(Config.DATABASE_URI)
@@ -172,7 +173,9 @@ if __name__ == "__main__":
     session = Session()
 
     # 执行操作
-    # db_from_xls(session, './test.xls')
+    # bank = Bank(content='近期，我国学者研究“多节点网络”取得基础性突破。（出题单位：科技部引智司）',
+    #             options=['电子', '原子', '质子', '量子'], answer='D')
+    # db_add(session, bank)
     # db_print(session)
     while True:
         print('%s\n%s\n%s'%('-*-'*28, '\tp-打印题库\tu-更新记录\tx-导出xls\tm-导出md\te-退出', '-*-'*28))
@@ -196,10 +199,11 @@ if __name__ == "__main__":
         else:
             print('输入错误，请重新输入！')
 
-
-
-
-
-
-    
-    
+# 近期，我国学者研究“多节点网络”取得基础性突破。（出题单位：科技部引智司）
+# --------------------------------------------------------------------------
+# A. 电子: 2
+# B. 原子: 2
+# C. 质子: 0
+# D. 量子: 29
+# --------------------------------------------------------------------------
+# 请先在手机提交答案，根据提交结果输入答案！
