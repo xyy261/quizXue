@@ -1,4 +1,13 @@
-# 导入:
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+'''
+@file: model.py
+@author: kessil
+@contact: https://github.com/kessil/
+@time: 2019年06月02日 15:57:45
+@desc: Life is short, you need Python
+'''
+
 from sqlalchemy import Column,Integer, String, Text, create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -66,6 +75,7 @@ class Bank(Base):
             items[index] = f'**{items[index]}**'
         options = '\n'.join([f'+ {x}' for x in items])
         return f'{self.id}. {content} **{self.answer.upper()}**\n{options}\n'
+    
 
 # 初始化数据库连接:
 engine = create_engine(Config.DATABASE_URI)

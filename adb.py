@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 '''
+@file: adb.py
 @author: kessil
-@license: LGPL
-@contact: https://github.com/kessil?tab=repositories
-@software: None
-@file: NAME.py
-@time: DATA TIME
-@desc: NO_DESC
+@contact: https://github.com/kessil/
+@time: 2019年06月02日 15:57:23
+@desc: Life is short, you need Python
 '''
+
 import os
 import subprocess
 from config import Config
@@ -28,7 +27,6 @@ def connect_mumu():
     os.system('adb connect 127.0.0.1:7555')
 
 if __name__ == "__main__":
-    # os.system('adb shell getevent -p')
-    # print(os.system('adb shell getevent -p'))
-    filename = Config.XML_URI
-    pull_xml(filename)
+    out = subprocess.Popen('adb shell uiautomator dump /sdcard/ui.xml', shell=True, stdout=subprocess.PIPE)
+    out = subprocess.Popen('adb pull /sdcard/ui.xml', shell=True, stdout=None)
+

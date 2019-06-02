@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 '''
+@file: main.py
 @author: kessil
-@license: LGPL
-@contact: https://github.com/kessil?tab=repositories
-@software: None
-@file: NAME.py
-@time: DATA TIME
-@desc: NO_DESC
+@contact: https://github.com/kessil/
+@time: 2019年06月02日 15:58:23
+@desc: Life is short, you need Python
 '''
-from andriod_handle import pull_xml, tap_screen
+
+from adb import pull_xml, tap_screen
 from model import Base, engine, Session,Bank, db_add, db_qeury
 import requests
 import string
@@ -25,7 +24,7 @@ session = Session()
 
 
 def search(question):
-    '''第二步、搜索引擎检索题目'''
+    '''搜索引擎检索题目'''
     content = re.sub(r'[\(（]出题单位.*', "", question.content)
     url = quote('https://www.baidu.com/s?wd=' + content, safe=string.printable)
     headers = Config.HEADERS
@@ -50,7 +49,7 @@ def run(session, question, ch=''):
             db_add(session, question)
            
     question = current
-    print('\n%s\n%s'%(question.content, '-'*min(len(question.content)*2, 80)))
+    print('\n%s\n%s'%('-'*min(len(question.content)*2, 120), question.content))
     bank = db_qeury(session, content=question.content)
     if bank:
         # items = [x for x in (bank.item1, bank.item2, bank.item3, bank.item4) if x]
@@ -67,7 +66,7 @@ ch = ''
 
 while True:    
     question = run(session, question, ch)
-    print('%s\n请先在手机提交答案，根据提交结果输入答案！'%('-'*min(len(question.content)*2, 80)))
+    print('%s\n请先在手机提交答案，根据提交结果输入答案！'%('-'*min(len(question.content)*2, 120)))
     ch = input('请输入：').upper()
 
     if 'N' == ch:
