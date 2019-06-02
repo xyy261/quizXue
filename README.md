@@ -25,26 +25,26 @@ python -m venv venv
 ```
 python安装模块
 ```
-$(venv):pip install -r requirements.txt
+(venv)$:pip install -r requirements.txt
 ```
 或
 ```python
-$(venv):pip install lxml
-$(venv):pip install requests
+(venv)$:pip install lxml
+(venv)$:pip install requests
 ```
 4. 手机进入挑战答题
 
 5. 运行脚本
 ```python
-$(venv):python main.py
+(venv)$:python main.py
 ```
 
 > 答题出错请在手机上复活或再来一局，然后在控制台上提交上次失败的题目的正确答案后继续，或提交正确答案后输入N退出
 
-6. 直接执行model.py可将数据库导出到[题库](./data/data-dev.md)，可直接使用Ctrl+F搜索答案，也可直接下载使用[Excel版本](./data/data-dev.xls)。欢迎一起增加题库
+6. 直接执行model.py可将数据库导出到[题库](./data/data-dev.md)，可直接使用Ctrl+F搜索答案，也可直接下载使用[Excel版本](./data/data-dev.xls)。
 
 ```python
-$(venv):python model.py
+(venv)$:python model.py
 ```
 
 > 展望： 每次手机提交需要在控制台输入答案或回车继续流程不够自动化，希望通过*adb shell getevent*获取手机输入事件，直接驱动脚本完成数据库的提交和转入下一流程
