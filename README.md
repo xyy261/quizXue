@@ -19,19 +19,12 @@
 
 2. 手机连接电脑，开启USB调试模式
 
-3. python安装虚拟环境
+3. python安装虚拟环境和模块
 ```python
 python -m venv venv
-```
-python安装模块
-```
 (venv)$:pip install -r requirements.txt
 ```
-或
-```python
-(venv)$:pip install lxml
-(venv)$:pip install requests
-```
+
 4. 手机进入挑战答题
 
 5. 运行脚本

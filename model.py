@@ -36,16 +36,16 @@ class Bank(Base):
         for i in range(len(options), 4):
             options.append('')
         # print(options)
-        self.content = content
-        self.item1, self.item2, self.item3, self.item4 = options
-        self.answer = answer
+        self.content = re.sub(r'\s+', '', content)
+        self.item1, self.item2, self.item3, self.item4 = [re.sub(r'\s+', '', x) for x in options]
+        self.answer = re.sub(r'\s+', '', answer)
 
     @classmethod
     def from_xml(cls, filename):
         xml = etree.parse(filename)
         root = xml.getroot()
         xml_question = root.xpath(Config.XPATH_QUESTION)[0]
-        content = re.sub(r'\s+', ' ', xml_question.xpath(Config.XPATH_CONTENT)[0].strip())
+        content = xml_question.xpath(Config.XPATH_CONTENT)[0].strip()
         xml_options = xml_question.xpath(Config.XPATH_OPTIONS)
         options = [str(x.xpath(Config.XPATH_OPTOIN_DESC)[0]).strip() for x in xml_options]
         return cls(content, options)
@@ -187,6 +187,11 @@ if __name__ == "__main__":
     #             options=['电子', '原子', '质子', '量子'], answer='D')
     # db_add(session, bank)
     # db_print(session)
+
+    # xls 导入
+    # filename = "C:/Users/vince/repositories/quizXue/data/data-dev-old.xls"
+    # db_from_xls(session, filename)
+
     while True:
         print('%s\n%s\n%s'%('-*-'*28, '\tp-打印题库\tu-更新记录\tx-导出xls\tm-导出md\te-退出', '-*-'*28))
         ch = input('''请输入：''').upper()

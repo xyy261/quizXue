@@ -8,7 +8,7 @@
 @desc: Life is short, you need Python
 '''
 
-from adb import pull_xml, tap_screen
+from adble import pull_xml, tap_screen
 from model import Base, engine, Session,Bank, db_add, db_qeury
 import requests
 import string
